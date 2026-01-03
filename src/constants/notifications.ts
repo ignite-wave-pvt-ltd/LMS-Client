@@ -1,0 +1,55 @@
+import { Play, Calendar, Award, Brain, AlertCircle } from "lucide-react";
+import type { Notification } from "../types/notification";
+
+export const DEFAULT_NOTIFICATIONS: Notification[] = [
+  {
+    id: 1,
+    type: "class",
+    title: "Live Class Starting Soon",
+    message: "MongoDB & Mongoose Deep Dive starts in 15 minutes",
+    time: "10 min ago",
+    read: false,
+    icon: Play,
+    color: "text-red-600 bg-red-100",
+  },
+  {
+    id: 2,
+    type: "assignment",
+    title: "Assignment Deadline Approaching",
+    message: "Task Management App due in 3 days",
+    time: "2 hours ago",
+    read: false,
+    icon: Calendar,
+    color: "text-orange-600 bg-orange-100",
+  },
+  {
+    id: 3,
+    type: "achievement",
+    title: "New Achievement Unlocked!",
+    message: "You've completed 45 coding challenges",
+    time: "5 hours ago",
+    read: false,
+    icon: Award,
+    color: "text-yellow-600 bg-yellow-100",
+  },
+  {
+    id: 4,
+    type: "quiz",
+    title: "Quiz Results Available",
+    message: "Redux Fundamentals Test - Score: 92%",
+    time: "1 day ago",
+    read: true,
+    icon: Brain,
+    color: "text-blue-600 bg-blue-100",
+  },
+  {
+    id: 5,
+    type: "announcement",
+    title: "Weekend Workshop Announcement",
+    message: "Special session on AI Integration this Saturday",
+    time: "2 days ago",
+    read: true,
+    icon: AlertCircle,
+    color: "text-purple-600 bg-purple-100",
+  },
+];
