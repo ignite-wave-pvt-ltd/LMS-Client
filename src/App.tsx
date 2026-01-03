@@ -12,33 +12,129 @@ import { Curriculum } from "./pages/Curriculum/Curriculum";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import { WeeklyAssignment } from "./pages/WeeklyAssignment/WeeklyAssignment";
 import { CodePlayground } from "./pages/CodePlayground/CodePlayground";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import AppLayout from "./layouts/AppLayout";
+import AuthProviderWrapper from "./providers/AuthProvider";
 
 const App = () => {
   return (
     <div>
-      <BrowserRouter>
-        <div className="App">
-          {/* Your app components go here */}
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/curriculum" element={<Curriculum />} />
+      <AuthProviderWrapper>
+        <BrowserRouter>
+          <div className="App">
+            {/* Your app components go here */}
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/curriculum" element={<Curriculum />} />
 
-            {/* Student routes */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/home" element={<StudentDashboard />} />
-            <Route path="/classes" element={<StudentClasses />} />
-            <Route path="/live" element={<LiveClass />} />
-            <Route path="/progress" element={<ProgressAnalytics />} />
-            <Route path="/cheatsheets" element={<CheatSheets />} />
-            <Route path="/mcq-test" element={<MCQTest />} />
-            <Route path="/code-practice" element={<CodePractice />} />
+              {/* Auth Routes */}
+              <Route path="/login" element={<Login />} />
 
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/weekly-assignment" element={<WeeklyAssignment />} />
-            <Route path="/code-playground" element={<CodePlayground />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
+              {/* Student (protected) routes */}
+              <Route element={<ProtectedRoute />}>
+                <Route
+                  path="/home"
+                  element={
+                    <AppLayout>
+                      <StudentDashboard />
+                    </AppLayout>
+                  }
+                />
+
+                <Route
+                  path="/classes"
+                  element={
+                    <AppLayout>
+                      <StudentClasses />
+                    </AppLayout>
+                  }
+                />
+
+                {/* Example: /live should not display header (or footer if you prefer) */}
+                <Route
+                  path="/live"
+                  element={
+                    <AppLayout
+                      showHeader={false}
+                      isFullScreen={true}
+                      showrightSidebar={false}
+                    >
+                      <LiveClass />
+                    </AppLayout>
+                  }
+                />
+
+                <Route
+                  path="/progress"
+                  element={
+                    <AppLayout>
+                      <ProgressAnalytics />
+                    </AppLayout>
+                  }
+                />
+
+                <Route
+                  path="/cheatsheets"
+                  element={
+                    <AppLayout>
+                      <CheatSheets />
+                    </AppLayout>
+                  }
+                />
+
+                <Route
+                  path="/mcq-test"
+                  element={
+                    <AppLayout>
+                      <MCQTest />
+                    </AppLayout>
+                  }
+                />
+
+                <Route
+                  path="/code-practice"
+                  element={
+                    <AppLayout>
+                      <CodePractice />
+                    </AppLayout>
+                  }
+                />
+
+                <Route
+                  path="/profile"
+                  element={
+                    <AppLayout>
+                      <ProfilePage />
+                    </AppLayout>
+                  }
+                />
+
+                <Route
+                  path="/weekly-assignment"
+                  element={
+                    <AppLayout>
+                      <WeeklyAssignment />
+                    </AppLayout>
+                  }
+                />
+
+                <Route
+                  path="/code-playground"
+                  element={
+                    <AppLayout
+                      showHeader={false}
+                      isFullScreen={true}
+                      showrightSidebar={false}
+                    >
+                      <CodePlayground />
+                    </AppLayout>
+                  }
+                />
+              </Route>
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </AuthProviderWrapper>
     </div>
   );
 };

@@ -3,14 +3,18 @@ import { useState } from "react";
 import { NotificationDropdown } from "./NotificationDropdown";
 import { UserAccountMenu } from "./UserAccountMenu";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Header = () => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const navigate = useNavigate();
 
+  const { logout, user } = useAuth();
+
   const onLogout = () => {
-    navigate("/");
+    logout();
+    navigate("/login");
   };
 
   return (
@@ -55,8 +59,8 @@ const Header = () => {
                 {/* User Account Menu */}
                 {showAccountMenu && (
                   <UserAccountMenu
-                    userName={"Priya Sharma"}
-                    userEmail={"priya@example.com"}
+                    userName={user?.name ?? "User"}
+                    userEmail={user?.email ?? ""}
                     onViewProfile={() => {
                       navigate("/profile");
                       setShowAccountMenu(false);

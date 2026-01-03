@@ -186,7 +186,7 @@ export function WeeklyAssignment() {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="py-3">
         <div className="grid grid-cols-3 gap-8">
           {/* Left Column - Main Content */}
           <div className="col-span-2 space-y-6">

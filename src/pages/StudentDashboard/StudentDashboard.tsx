@@ -7,9 +7,7 @@ import {
   CheckCircle,
   Award,
 } from "lucide-react";
-import { RightSidebar } from "../../layouts/RightSidebar/RightSidebar";
 import { useNavigate } from "react-router-dom";
-import Header from "../../layouts/header/Header";
 
 export function StudentDashboard() {
   const navigate = useNavigate();
@@ -574,11 +572,8 @@ export function StudentDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Top Header */}
-      <Header />
-
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-8">
+      <div>
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl text-gray-900 mb-2">
@@ -866,9 +861,6 @@ export function StudentDashboard() {
           </div>
         </div>
       </div>
-
-      {/* Right Sidebar */}
-      <RightSidebar />
     </div>
   );
 }

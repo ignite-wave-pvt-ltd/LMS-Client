@@ -13,8 +13,6 @@ import {
   Save,
 } from "lucide-react";
 import { useState } from "react";
-import Header from "../../layouts/header/Header";
-import { RightSidebar } from "../../layouts/RightSidebar/RightSidebar";
 
 export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false);
@@ -126,9 +124,7 @@ export default function ProfilePage() {
 
   return (
     <div>
-      <Header />
-
-      <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center justify-between">
@@ -452,7 +448,6 @@ export default function ProfilePage() {
           </div>
         </div>
       </div>
-      <RightSidebar />
     </div>
   );
 }

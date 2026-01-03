@@ -48,7 +48,6 @@ export function RightSidebar({}) {
   ];
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
 
   const onToggle = () => {
     setIsSidebarOpen(!isSidebarOpen);

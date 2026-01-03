@@ -1,32 +1,30 @@
 import { useState } from "react";
 import { Brain, AlertCircle } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
+import useAuth from "../../hooks/useAuth";
 
 export default function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const { login } = useAuth();
 
   const handleSuccess = (credentialResponse: any) => {
     setError("");
     setLoading(true);
     try {
       const token = credentialResponse?.credential;
-      console.log("token", token);
 
       if (!token) throw new Error("No credential returned from Google");
 
-      // Decode token to get user info (name, email, picture)
-      const user: any = jwtDecode(token);
+      // Use centralized auth login which decodes and stores token
+      login(token);
 
-      // Save to localStorage (or send token to backend to verify/create account)
-      localStorage.setItem("google_user", JSON.stringify(user));
-      localStorage.setItem("google_token", token);
-
-      // Navigate to protected area
-      navigate("/home");
+      // Navigate to intended page if any, else /home
+      const from = (location.state as any)?.from?.pathname || "/home";
+      navigate(from, { replace: true });
     } catch (err: any) {
       setError(err?.message || "Failed to sign in with Google");
     } finally {

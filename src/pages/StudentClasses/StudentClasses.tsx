@@ -10,8 +10,7 @@ import {
   Lock,
   Play,
 } from "lucide-react";
-import { RightSidebar } from "../../layouts/RightSidebar/RightSidebar";
-import Header from "../../layouts/header/Header";
+
 import { useNavigate } from "react-router-dom";
 
 const StudentClasses = () => {
@@ -541,13 +540,13 @@ const StudentClasses = () => {
 
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <>
         {/* Calendar Bar - Replaces old header and day selector */}
         <CalendarBar selectedDay={selectedDay} onSelectDay={setSelectedDay} />
 
         {/* Main Content */}
-        <div className="max-w-7xl mx-auto px-6 py-6">
+        <div className="mt-3">
           {/* Selected Day Header Card */}
           <div className="mb-6 bg-linear-to-r from-indigo-600 to-purple-600 rounded-xl p-6 text-white">
             <div className="flex items-center justify-between">
@@ -841,7 +840,6 @@ const StudentClasses = () => {
           </div>
         </div>
       </>
-      <RightSidebar />
     </div>
   );
 };
